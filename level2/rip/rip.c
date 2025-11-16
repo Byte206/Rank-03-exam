@@ -34,6 +34,28 @@ void	print_solutions(char *str, int index, int open, int close, int removed, int
 	}
 }
 
+
+int	my_count(char *str)
+{
+	int open = 0;
+	int close = 0;
+	int i = 0;
+
+	while (str[i])
+	{
+		if (str[i] == '(')
+			open++;
+		else if (str[i] == ')')
+			close++;
+		i++;
+	}
+	if (open >= close )
+		return (open - close);
+	if (open <= close )
+		return (close - open);
+	return (open + close);
+}
+
 int	count(char *str)
 {
 	int open = 0;
@@ -61,8 +83,10 @@ int	main(int ac, char *av[])
 		return (1);
 	char *str = av[1];
 	int	min_remove = count(str);
+	printf("Original:%d\n", min_remove);
+	printf("Mi funcion:%d\n", my_count(str));
 	char buffer[256];
-	print_solutions(str, 0, 0, 0, 0, min_remove, buffer);
+//	print_solutions(str, 0, 0, 0, 0, min_remove, buffer);
 	return (0);
 }
 
